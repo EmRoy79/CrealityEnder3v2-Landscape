@@ -102,7 +102,10 @@
 #define DWIN_FONT_HEAD font10x20
 
 #define MENU_CHAR_LIMIT  24
-#define STATUS_Y 360
+
+
+#define STATUS_Y (LCD_ROT == 1) ? 260 : 360
+
 
 // Fan speed limit
 #define FANON           255
@@ -135,19 +138,20 @@
 #define MINUNITMULT pow(10, UNITFDIGITS)
 
 #define ENCODER_WAIT_MS                  20
-#define DWIN_VAR_UPDATE_INTERVAL         1024
+#define DWIN_VAR_UPDATE_INTERVAL         512
 #define DWIN_SCROLL_UPDATE_INTERVAL      SEC_TO_MS(2)
 #define DWIN_REMAIN_TIME_UPDATE_INTERVAL SEC_TO_MS(20)
 
-constexpr uint16_t TROWS = 6, MROWS = TROWS - 1,        // Total rows, and other-than-Back
-                   TITLE_HEIGHT = 30,                   // Title bar height
-                   MLINE = 53,                          // Menu line height
+uint16_t TROWS = (LCD_ROT==1) ? 5 : 6, MROWS = TROWS - 1,        // Total rows, and other-than-Back
+                   TITLE_HEIGHT = (LCD_ROT==1) ? 0 : 30,                   // Title bar height
+                   MLINE = (LCD_ROT==1) ? 43 : 53,                          // Menu line height
                    LBLX = 60,                           // Menu item label X
-                   MENU_CHR_W = 8, STAT_CHR_W = 10;
+                   MENU_CHR_W = (LCD_ROT==1) ? 18 : 8, STAT_CHR_W = (LCD_ROT==1) ? 20 : 10;
 
 #define MBASE(L) (49 + MLINE * (L))
 
 #define BABY_Z_VAR TERN(HAS_BED_PROBE, probe.offset.z, dwin_zoffset)
+
 
 /* Value Init */
 HMI_value_t HMI_ValueStruct;
@@ -239,91 +243,91 @@ void DWIN_Draw_Signed_Float(uint8_t size, uint16_t bColor, uint8_t iNum, uint8_t
 
 void ICON_Print() {
   if (select_page.now == 0) {
-    DWIN_ICON_Show(ICON, ICON_Print_1, 17, 130);
-    DWIN_Draw_Rectangle(0, Color_White, 17, 130, 126, 229);
+    DWIN_ICON_Show(ICON, ICON_Print_1, (LCD_ROT == 1) ? 10 : 17, (LCD_ROT == 1) ? 40 : 130);
+    /*DWIN_Draw_Rectangle(0, Color_White, 17, 130, 126, 229);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 1, 447, 28, 460, 58, 201);
     else
-      DWIN_Frame_AreaCopy(1, 1, 451, 31, 463, 57, 201);
+      DWIN_Frame_AreaCopy(1, 1, 451, 31, 463, 57, 201);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Print_0, 17, 130);
-    if (HMI_IsChinese())
+    DWIN_ICON_Show(ICON, ICON_Print_0, (LCD_ROT == 1) ? 10 : 17, (LCD_ROT == 1) ? 40 : 130);
+    /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 1, 405, 28, 420, 58, 201);
     else
-      DWIN_Frame_AreaCopy(1, 1, 423, 31, 435, 57, 201);
+      DWIN_Frame_AreaCopy(1, 1, 423, 31, 435, 57, 201);*/
   }
 }
 
 void ICON_Prepare() {
   if (select_page.now == 1) {
-    DWIN_ICON_Show(ICON, ICON_Prepare_1, 145, 130);
-    DWIN_Draw_Rectangle(0, Color_White, 145, 130, 254, 229);
+    DWIN_ICON_Show(ICON, ICON_Prepare_1, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 40 : 130);
+    /*DWIN_Draw_Rectangle(0, Color_White, 145, 130, 254, 229);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 31, 447, 58, 460, 186, 201);
     else
-      DWIN_Frame_AreaCopy(1, 33, 451, 82, 466, 175, 201);
+      DWIN_Frame_AreaCopy(1, 33, 451, 82, 466, 175, 201);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Prepare_0, 145, 130);
-    if (HMI_IsChinese())
+    DWIN_ICON_Show(ICON, ICON_Prepare_0, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 40 : 130);
+    /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 31, 405, 58, 420, 186, 201);
     else
-      DWIN_Frame_AreaCopy(1, 33, 423, 82, 438, 175, 201);
+      DWIN_Frame_AreaCopy(1, 33, 423, 82, 438, 175, 201);*/
   }
 }
 
 void ICON_Control() {
   if (select_page.now == 2) {
-    DWIN_ICON_Show(ICON, ICON_Control_1, 17, 246);
-    DWIN_Draw_Rectangle(0, Color_White, 17, 246, 126, 345);
+    DWIN_ICON_Show(ICON, ICON_Control_1, (LCD_ROT == 1) ? 10 : 17, (LCD_ROT == 1) ? 160 : 246);
+    /*DWIN_Draw_Rectangle(0, Color_White, 17, 246, 126, 345);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 61, 447, 88, 460, 58, 318);
     else
-      DWIN_Frame_AreaCopy(1, 85, 451, 132, 463, 48, 318);
+      DWIN_Frame_AreaCopy(1, 85, 451, 132, 463, 48, 318);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Control_0, 17, 246);
-    if (HMI_IsChinese())
+    DWIN_ICON_Show(ICON, ICON_Control_0, (LCD_ROT == 1) ? 10 : 17, (LCD_ROT == 1) ? 160 : 246);
+    /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 61, 405, 88, 420, 58, 318);
     else
-      DWIN_Frame_AreaCopy(1, 85, 423, 132, 434, 48, 318);
+      DWIN_Frame_AreaCopy(1, 85, 423, 132, 434, 48, 318);*/
   }
 }
 
 void ICON_StartInfo(bool show) {
   if (show) {
-    DWIN_ICON_Show(ICON, ICON_Info_1, 145, 246);
-    DWIN_Draw_Rectangle(0, Color_White, 145, 246, 254, 345);
+    DWIN_ICON_Show(ICON, ICON_Info_1, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 160: 246);
+    /*DWIN_Draw_Rectangle(0, Color_White, 145, 246, 254, 345);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 91, 447, 118, 460, 186, 318);
     else
-      DWIN_Frame_AreaCopy(1, 132, 451, 159, 466, 186, 318);
+      DWIN_Frame_AreaCopy(1, 132, 451, 159, 466, 186, 318);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Info_0, 145, 246);
-    if (HMI_IsChinese())
+    DWIN_ICON_Show(ICON, ICON_Info_0, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 160: 246);
+    /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 91, 405, 118, 420, 186, 318);
     else
-      DWIN_Frame_AreaCopy(1, 132, 423, 159, 435, 186, 318);
+      DWIN_Frame_AreaCopy(1, 132, 423, 159, 435, 186, 318);*/
   }
 }
 
 void ICON_Leveling(bool show) {
   if (show) {
-    DWIN_ICON_Show(ICON, ICON_Leveling_1, 145, 246);
-    DWIN_Draw_Rectangle(0, Color_White, 145, 246, 254, 345);
+    DWIN_ICON_Show(ICON, ICON_Info_1, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 160: 246);
+    /*DWIN_Draw_Rectangle(0, Color_White, 145, 246, 254, 345);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 211, 447, 238, 460, 186, 318);
     else
-      DWIN_Frame_AreaCopy(1, 84, 437, 120,  449, 182, 318);
+      DWIN_Frame_AreaCopy(1, 84, 437, 120,  449, 182, 318);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Leveling_0, 145, 246);
-    if (HMI_IsChinese())
+    DWIN_ICON_Show(ICON, ICON_Info_0, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 160: 246);
+    /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 211, 405, 238, 420, 186, 318);
     else
-      DWIN_Frame_AreaCopy(1, 84, 465, 120, 478, 182, 318);
+      DWIN_Frame_AreaCopy(1, 84, 465, 120, 478, 182, 318);*/
   }
 }
 

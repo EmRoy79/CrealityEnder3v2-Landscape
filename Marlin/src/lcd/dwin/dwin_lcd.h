@@ -39,8 +39,15 @@
 #define DWIN_SCROLL_UP   2
 #define DWIN_SCROLL_DOWN 3
 
-#define DWIN_WIDTH  272
-#define DWIN_HEIGHT 480
+/**
+ *  LCD Rotation *
+ *  0 = 0 degrees (default portrait)
+ *  1 = 90 degrees rotation CCW (landscape with knob on the right)
+ **/
+#define LCD_ROT 1
+
+#define DWIN_WIDTH  (LCD_ROT == 1) ? 480 : 272
+#define DWIN_HEIGHT (LCD_ROT == 1) ? 272 : 480
 
 /*-------------------------------------- System variable function --------------------------------------*/
 
