@@ -333,90 +333,96 @@ void ICON_Leveling(bool show) {
 
 void ICON_Tune() {
   if (select_print.now == 0) {
-    DWIN_ICON_Show(ICON, ICON_Setup_1, 8, 252);
-    DWIN_Draw_Rectangle(0, Color_White, 8, 252, 87, 351);
+    DWIN_ICON_Show(ICON, ICON_Setup_1, (LCD_ROT == 1) ? 2 : 8, (LCD_ROT == 1) ? 200 : 252);
+    /*DWIN_Draw_Rectangle(0, Color_White, 8, 252, 87, 351);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 121, 447, 148, 458, 34, 325);
     else
-      DWIN_Frame_AreaCopy(1,   0, 466,  34, 476, 31, 325);
+      DWIN_Frame_AreaCopy(1,   0, 466,  34, 476, 31, 325);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Setup_0, 8, 252);
-    if (HMI_IsChinese())
+    DWIN_ICON_Show(ICON, ICON_Setup_0, (LCD_ROT == 1) ? 2 : 8, (LCD_ROT == 1) ? 200 : 252);
+    /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 121, 405, 148, 420, 34, 325);
     else
-      DWIN_Frame_AreaCopy(1,   0, 438,  32, 448, 31, 325);
+      DWIN_Frame_AreaCopy(1,   0, 438,  32, 448, 31, 325);*/
   }
 }
 
 void ICON_Pause() {
   if (select_print.now == 1) {
-    DWIN_ICON_Show(ICON, ICON_Pause_1, 96, 252);
-    DWIN_Draw_Rectangle(0, Color_White, 96, 252, 175, 351);
+    DWIN_ICON_Show(ICON, ICON_Pause_1, (LCD_ROT == 1) ? 83 : 96, (LCD_ROT == 1) ? 200 : 252);
+    /*DWIN_Draw_Rectangle(0, Color_White, 96, 252, 175, 351);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 181, 447, 208, 459, 124, 325);
     else
-      DWIN_Frame_AreaCopy(1, 177, 451, 216, 462, 116, 325);
+      DWIN_Frame_AreaCopy(1, 177, 451, 216, 462, 116, 325);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Pause_0, 96, 252);
-    if (HMI_IsChinese())
+    DWIN_ICON_Show(ICON, ICON_Pause_0, (LCD_ROT == 1) ? 83 : 96, (LCD_ROT == 1) ? 200 : 252);
+    /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 181, 405, 208, 420, 124, 325);
     else
-      DWIN_Frame_AreaCopy(1, 177, 423, 215, 433, 116, 325);
+      DWIN_Frame_AreaCopy(1, 177, 423, 215, 433, 116, 325);*/
   }
 }
 
 void ICON_Continue() {
   if (select_print.now == 1) {
-    DWIN_ICON_Show(ICON, ICON_Continue_1, 96, 252);
-    DWIN_Draw_Rectangle(0, Color_White, 96, 252, 175, 351);
+    DWIN_ICON_Show(ICON, ICON_Continue_1, (LCD_ROT == 1) ? 83 : 96, (LCD_ROT==1) ? 200 : 252);
+    /*DWIN_Draw_Rectangle(0, Color_White, 96, 252, 175, 351);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 1, 447, 28, 460, 124, 325);
     else
-      DWIN_Frame_AreaCopy(1, 1, 452, 32, 464, 121, 325);
+      DWIN_Frame_AreaCopy(1, 1, 452, 32, 464, 121, 325);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Continue_0, 96, 252);
-    if (HMI_IsChinese())
+    DWIN_ICON_Show(ICON, ICON_Continue_0, (LCD_ROT == 1) ? 83 : 96, (LCD_ROT==1) ? 200 : 252);
+    /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 1, 405, 28, 420, 124, 325);
     else
-      DWIN_Frame_AreaCopy(1, 1, 424, 31, 434, 121, 325);
+      DWIN_Frame_AreaCopy(1, 1, 424, 31, 434, 121, 325);*/
   }
 }
 
 void ICON_Stop() {
   if (select_print.now == 2) {
-    DWIN_ICON_Show(ICON, ICON_Stop_1, 184, 252);
-    DWIN_Draw_Rectangle(0, Color_White, 184, 252, 263, 351);
+    DWIN_ICON_Show(ICON, ICON_Stop_1, (LCD_ROT == 1) ? 164 : 184, (LCD_ROT == 1) ? 200 : 252);
+    /*DWIN_Draw_Rectangle(0, Color_White, 184, 252, 263, 351);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 151, 447, 178, 459, 210, 325);
     else
-      DWIN_Frame_AreaCopy(1, 218, 452, 249, 466, 209, 325);
+      DWIN_Frame_AreaCopy(1, 218, 452, 249, 466, 209, 325);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Stop_0, 184, 252);
-    if (HMI_IsChinese())
+    DWIN_ICON_Show(ICON, ICON_Stop_0, (LCD_ROT == 1) ? 164 : 184, (LCD_ROT == 1) ? 200 : 252);
+    /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 151, 405, 178, 420, 210, 325);
     else
-      DWIN_Frame_AreaCopy(1, 218, 423, 247, 436, 209, 325);
+      DWIN_Frame_AreaCopy(1, 218, 423, 247, 436, 209, 325);*/
   }
 }
 
 void Clear_Title_Bar() {
-  DWIN_Draw_Rectangle(1, Color_Bg_Blue, 0, 0, DWIN_WIDTH, 30);
+  DWIN_Draw_Rectangle(1, (LCD_ROT == 1) ? Color_Bg_Green : Color_Bg_Blue, 0, 0, (LCD_ROT == 1) ? DWIN_WIDTH/2 : DWIN_WIDTH, 30);
+  if (LCD_ROT == 1) {
+      DWIN_Draw_Rectangle(1, Color_Bg_Orange, (DWIN_WIDTH/2)+10, 0, DWIN_WIDTH-1, 30);
+  }
 }
 
 void Draw_Title(const char * const title) {
-  DWIN_Draw_String(false, false, DWIN_FONT_HEAD, Color_White, Color_Bg_Blue, 14, 4, (char*)title);
+  DWIN_Draw_String(false, false, DWIN_FONT_HEAD, Color_White, (LCD_ROT == 1) ? Color_Bg_Green : Color_Bg_Blue, 14, 4, (char*)title);
 }
 
 void Draw_Title(const __FlashStringHelper * title) {
-  DWIN_Draw_String(false, false, DWIN_FONT_HEAD, Color_White, Color_Bg_Blue, 14, 4, (char*)title);
+  DWIN_Draw_String(false, false, DWIN_FONT_HEAD, Color_White, (LCD_ROT == 1) ? Color_Bg_Green : Color_Bg_Blue, 14, 4, (char*)title);
+  if (LCD_ROT == 1) {
+    DWIN_Draw_String(false, false, DWIN_FONT_HEAD, Color_White, Color_Bg_Orange, (DWIN_WIDTH/2)+20, 4, F("Status"));
+  }
 }
 
 void Clear_Menu_Area() {
-  DWIN_Draw_Rectangle(1, Color_Bg_Black, 0, 31, DWIN_WIDTH, STATUS_Y);
+  DWIN_Draw_Rectangle(1, Color_Bg_Black, 0, 31, (LCD_ROT == 1) ? STATUS_Y : DWIN_WIDTH, (LCD_ROT == 1) ? DWIN_WIDTH : STATUS_Y);
 }
 
 void Clear_Main_Window() {
@@ -430,7 +436,7 @@ void Clear_Popup_Area() {
 }
 
 void Draw_Popup_Bkgd_105() {
-  DWIN_Draw_Rectangle(1, Color_Bg_Window, 14, 105, 258, 374);
+  DWIN_Draw_Rectangle(1, Color_Bg_Window, 14, LCD_ROT ? 40 : 105, LCD_ROT ? 220 : 258, LCD_ROT ? 220 : 374);
 }
 
 void Draw_More_Icon(const uint8_t line) {
@@ -453,11 +459,12 @@ void Move_Highlight(const int16_t from, const uint16_t newline) {
 
 void Add_Menu_Line() {
   Move_Highlight(1, MROWS);
-  DWIN_Draw_Line(Line_Color, 16, MBASE(MROWS + 1) - 20, 256, MBASE(MROWS + 1) - 19);
+  if (LCD_ROT == 0)
+    DWIN_Draw_Line(Line_Color, 16, MBASE(MROWS + 1) - 20, 256, MBASE(MROWS + 1) - 19);
 }
 
 void Scroll_Menu(const uint8_t dir) {
-  DWIN_Frame_AreaMove(1, dir, MLINE, Color_Bg_Black, 0, 31, DWIN_WIDTH, 349);
+  DWIN_Frame_AreaMove(1, dir, MLINE, Color_Bg_Black, 0, LCD_ROT ? 33 : 31, LCD_ROT ? STATUS_Y - 1 : DWIN_WIDTH, LCD_ROT ? 238 : 349);
   switch (dir) {
     case DWIN_SCROLL_DOWN: Move_Highlight(-1, 0); break;
     case DWIN_SCROLL_UP:   Add_Menu_Line(); break;

@@ -1033,7 +1033,11 @@ void setup() {
     delay(800);   // Required delay (since boot?)
     SERIAL_ECHOPGM("\nDWIN handshake ");
     if (DWIN_Handshake()) SERIAL_ECHOLNPGM("ok."); else SERIAL_ECHOLNPGM("error.");
-    DWIN_Frame_SetDir(1); // Orientation 90°
+    if (LCD_ROT == 1) {
+      DWIN_Frame_SetDir(0); // Orientation 0° (Landscape)
+    } else if (LCD_ROT == 0) {
+      DWIN_Frame_SetDir(1); // Orientation 90° (Vertical)
+    }
     DWIN_UpdateLCD();     // Show bootscreen (first image)
   #else
     SETUP_RUN(ui.init());
