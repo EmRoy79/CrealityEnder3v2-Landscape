@@ -46,8 +46,14 @@
  **/
 #define LCD_ROT 1
 
-#define DWIN_WIDTH  (LCD_ROT == 1) ? 480 : 272
-#define DWIN_HEIGHT (LCD_ROT == 1) ? 272 : 480
+#ifdef LCD_ROT
+  #define DWIN_WIDTH  480 
+  #define DWIN_HEIGHT 272 
+#else 
+  #define DWIN_WIDTH  272
+  #define DWIN_HEIGHT 480
+#endif
+
 
 /*-------------------------------------- System variable function --------------------------------------*/
 
