@@ -94,7 +94,7 @@
 
 #define PAUSE_HEAT
 
-#define USE_STRING_HEADINGS
+//#define USE_STRING_HEADINGS
 #define USE_STRING_TITLES
 
 #define DWIN_FONT_MENU font8x16
@@ -104,7 +104,7 @@
 #define MENU_CHAR_LIMIT  24
 
 
-#define STATUS_Y (LCD_ROT == 1) ? 260 : 360
+#define STATUS_Y (LCD_ROT ? 260 : 360)
 
 
 // Fan speed limit
@@ -142,9 +142,9 @@
 #define DWIN_SCROLL_UPDATE_INTERVAL      SEC_TO_MS(2)
 #define DWIN_REMAIN_TIME_UPDATE_INTERVAL SEC_TO_MS(20)
 
-uint16_t TROWS = LCD_ROT ? 5 : 6, MROWS = TROWS - 1,        // Total rows, and other-than-Back
-                   TITLE_HEIGHT = LCD_ROT ? 0 : 30,                   // Title bar height
-                   MLINE = LCD_ROT ? 43 : 53,                          // Menu line height
+uint16_t TROWS = (LCD_ROT ? 5 : 6), MROWS = TROWS - 1,        // Total rows, and other-than-Back
+                   TITLE_HEIGHT = (LCD_ROT ? 0 : 30),                   // Title bar height
+                   MLINE = (LCD_ROT ? 43 : 53),                          // Menu line height
                    LBLX = 60,                           // Menu item label X
                    MENU_CHR_W = (LCD_ROT ? 18 : 8), STAT_CHR_W = (LCD_ROT ? 20 : 10);
 
@@ -243,7 +243,7 @@ void DWIN_Draw_Signed_Float(uint8_t size, uint16_t bColor, uint8_t iNum, uint8_t
 
 void ICON_Print() {
   if (select_page.now == 0) {
-    DWIN_ICON_Show(ICON, ICON_Print_1, (LCD_ROT == 1) ? 10 : 17, (LCD_ROT == 1) ? 40 : 130);
+    DWIN_ICON_Show(ICON, ICON_Print_1, LCD_ROT ? 10 : 17, LCD_ROT ? 40 : 130);
     /*DWIN_Draw_Rectangle(0, Color_White, 17, 130, 126, 229);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 1, 447, 28, 460, 58, 201);
@@ -251,7 +251,7 @@ void ICON_Print() {
       DWIN_Frame_AreaCopy(1, 1, 451, 31, 463, 57, 201);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Print_0, (LCD_ROT == 1) ? 10 : 17, (LCD_ROT == 1) ? 40 : 130);
+    DWIN_ICON_Show(ICON, ICON_Print_0, LCD_ROT ? 10 : 17, LCD_ROT ? 40 : 130);
     /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 1, 405, 28, 420, 58, 201);
     else
@@ -261,7 +261,7 @@ void ICON_Print() {
 
 void ICON_Prepare() {
   if (select_page.now == 1) {
-    DWIN_ICON_Show(ICON, ICON_Prepare_1, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 40 : 130);
+    DWIN_ICON_Show(ICON, ICON_Prepare_1, LCD_ROT ? 130 : 145, LCD_ROT ? 40 : 130);
     /*DWIN_Draw_Rectangle(0, Color_White, 145, 130, 254, 229);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 31, 447, 58, 460, 186, 201);
@@ -269,7 +269,7 @@ void ICON_Prepare() {
       DWIN_Frame_AreaCopy(1, 33, 451, 82, 466, 175, 201);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Prepare_0, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 40 : 130);
+    DWIN_ICON_Show(ICON, ICON_Prepare_0, LCD_ROT ? 130 : 145, LCD_ROT ? 40 : 130);
     /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 31, 405, 58, 420, 186, 201);
     else
@@ -279,7 +279,7 @@ void ICON_Prepare() {
 
 void ICON_Control() {
   if (select_page.now == 2) {
-    DWIN_ICON_Show(ICON, ICON_Control_1, (LCD_ROT == 1) ? 10 : 17, (LCD_ROT == 1) ? 160 : 246);
+    DWIN_ICON_Show(ICON, ICON_Control_1, LCD_ROT ? 10 : 17, LCD_ROT ? 160 : 246);
     /*DWIN_Draw_Rectangle(0, Color_White, 17, 246, 126, 345);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 61, 447, 88, 460, 58, 318);
@@ -287,7 +287,7 @@ void ICON_Control() {
       DWIN_Frame_AreaCopy(1, 85, 451, 132, 463, 48, 318);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Control_0, (LCD_ROT == 1) ? 10 : 17, (LCD_ROT == 1) ? 160 : 246);
+    DWIN_ICON_Show(ICON, ICON_Control_0, LCD_ROT ? 10 : 17, LCD_ROT ? 160 : 246);
     /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 61, 405, 88, 420, 58, 318);
     else
@@ -297,7 +297,7 @@ void ICON_Control() {
 
 void ICON_StartInfo(bool show) {
   if (show) {
-    DWIN_ICON_Show(ICON, ICON_Info_1, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 160: 246);
+    DWIN_ICON_Show(ICON, ICON_Info_1, LCD_ROT ? 130 : 145, LCD_ROT ? 160: 246);
     /*DWIN_Draw_Rectangle(0, Color_White, 145, 246, 254, 345);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 91, 447, 118, 460, 186, 318);
@@ -305,7 +305,7 @@ void ICON_StartInfo(bool show) {
       DWIN_Frame_AreaCopy(1, 132, 451, 159, 466, 186, 318);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Info_0, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 160: 246);
+    DWIN_ICON_Show(ICON, ICON_Info_0, LCD_ROT ? 130 : 145, LCD_ROT ? 160: 246);
     /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 91, 405, 118, 420, 186, 318);
     else
@@ -315,7 +315,7 @@ void ICON_StartInfo(bool show) {
 
 void ICON_Leveling(bool show) {
   if (show) {
-    DWIN_ICON_Show(ICON, ICON_Info_1, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 160: 246);
+    DWIN_ICON_Show(ICON, ICON_Info_1, LCD_ROT ? 130 : 145, LCD_ROT ? 160: 246);
     /*DWIN_Draw_Rectangle(0, Color_White, 145, 246, 254, 345);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 211, 447, 238, 460, 186, 318);
@@ -323,7 +323,7 @@ void ICON_Leveling(bool show) {
       DWIN_Frame_AreaCopy(1, 84, 437, 120,  449, 182, 318);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Info_0, (LCD_ROT == 1) ? 130 : 145, (LCD_ROT == 1) ? 160: 246);
+    DWIN_ICON_Show(ICON, ICON_Info_0, LCD_ROT ? 130 : 145, LCD_ROT ? 160: 246);
     /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 211, 405, 238, 420, 186, 318);
     else
@@ -333,7 +333,7 @@ void ICON_Leveling(bool show) {
 
 void ICON_Tune() {
   if (select_print.now == 0) {
-    DWIN_ICON_Show(ICON, ICON_Setup_1, (LCD_ROT == 1) ? 2 : 8, (LCD_ROT == 1) ? 200 : 252);
+    DWIN_ICON_Show(ICON, ICON_Setup_1, LCD_ROT ? 2 : 8, LCD_ROT ? 200 : 252);
     /*DWIN_Draw_Rectangle(0, Color_White, 8, 252, 87, 351);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 121, 447, 148, 458, 34, 325);
@@ -341,7 +341,7 @@ void ICON_Tune() {
       DWIN_Frame_AreaCopy(1,   0, 466,  34, 476, 31, 325);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Setup_0, (LCD_ROT == 1) ? 2 : 8, (LCD_ROT == 1) ? 200 : 252);
+    DWIN_ICON_Show(ICON, ICON_Setup_0, LCD_ROT ? 2 : 8, LCD_ROT ? 200 : 252);
     /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 121, 405, 148, 420, 34, 325);
     else
@@ -351,7 +351,7 @@ void ICON_Tune() {
 
 void ICON_Pause() {
   if (select_print.now == 1) {
-    DWIN_ICON_Show(ICON, ICON_Pause_1, (LCD_ROT == 1) ? 83 : 96, (LCD_ROT == 1) ? 200 : 252);
+    DWIN_ICON_Show(ICON, ICON_Pause_1, LCD_ROT ? 83 : 96, LCD_ROT ? 200 : 252);
     /*DWIN_Draw_Rectangle(0, Color_White, 96, 252, 175, 351);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 181, 447, 208, 459, 124, 325);
@@ -359,7 +359,7 @@ void ICON_Pause() {
       DWIN_Frame_AreaCopy(1, 177, 451, 216, 462, 116, 325);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Pause_0, (LCD_ROT == 1) ? 83 : 96, (LCD_ROT == 1) ? 200 : 252);
+    DWIN_ICON_Show(ICON, ICON_Pause_0, LCD_ROT ? 83 : 96, LCD_ROT  ? 200 : 252);
     /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 181, 405, 208, 420, 124, 325);
     else
@@ -369,7 +369,7 @@ void ICON_Pause() {
 
 void ICON_Continue() {
   if (select_print.now == 1) {
-    DWIN_ICON_Show(ICON, ICON_Continue_1, (LCD_ROT == 1) ? 83 : 96, (LCD_ROT==1) ? 200 : 252);
+    DWIN_ICON_Show(ICON, ICON_Continue_1, LCD_ROT ? 83 : 96, LCD_ROT ? 200 : 252);
     /*DWIN_Draw_Rectangle(0, Color_White, 96, 252, 175, 351);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 1, 447, 28, 460, 124, 325);
@@ -377,7 +377,7 @@ void ICON_Continue() {
       DWIN_Frame_AreaCopy(1, 1, 452, 32, 464, 121, 325);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Continue_0, (LCD_ROT == 1) ? 83 : 96, (LCD_ROT==1) ? 200 : 252);
+    DWIN_ICON_Show(ICON, ICON_Continue_0, LCD_ROT ? 83 : 96, LCD_ROT ? 200 : 252);
     /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 1, 405, 28, 420, 124, 325);
     else
@@ -387,7 +387,7 @@ void ICON_Continue() {
 
 void ICON_Stop() {
   if (select_print.now == 2) {
-    DWIN_ICON_Show(ICON, ICON_Stop_1, (LCD_ROT == 1) ? 164 : 184, (LCD_ROT == 1) ? 200 : 252);
+    DWIN_ICON_Show(ICON, ICON_Stop_1, LCD_ROT ? 164 : 184, LCD_ROT ? 200 : 252);
     /*DWIN_Draw_Rectangle(0, Color_White, 184, 252, 263, 351);
     if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 151, 447, 178, 459, 210, 325);
@@ -395,7 +395,7 @@ void ICON_Stop() {
       DWIN_Frame_AreaCopy(1, 218, 452, 249, 466, 209, 325);*/
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Stop_0, (LCD_ROT == 1) ? 164 : 184, (LCD_ROT == 1) ? 200 : 252);
+    DWIN_ICON_Show(ICON, ICON_Stop_0, LCD_ROT ? 164 : 184, LCD_ROT ? 200 : 252);
     /*if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 151, 405, 178, 420, 210, 325);
     else
@@ -409,14 +409,24 @@ void Clear_Title_Bar() {
       DWIN_Draw_Rectangle(1, Color_Bg_Orange, (DWIN_WIDTH / 2) + 10, 0, DWIN_WIDTH - 1, 30);
 }
 
+
+// just a function for debugging purposes
+void Debug_Info(int16_t thing) {
+  DWIN_Draw_IntValue(true, true, 0, font8x16, Color_White, Color_Bg_Black, 3, 184, 4, thing);
+}
+
+void Draw_Status_Title(const __FlashStringHelper * title) {
+  if (LCD_ROT)
+    DWIN_Draw_String(false, false, DWIN_FONT_HEAD, Color_White, Color_Bg_Orange, (DWIN_WIDTH / 2) + 20, 4, title);
+}
+
 void Draw_Title(const char * const title) {
   DWIN_Draw_String(false, false, DWIN_FONT_HEAD, Color_White, LCD_ROT ? Color_Bg_Green : Color_Bg_Blue, 14, 4, (char*)title);
 }
 
 void Draw_Title(const __FlashStringHelper * title) {
   DWIN_Draw_String(false, false, DWIN_FONT_HEAD, Color_White, LCD_ROT ? Color_Bg_Green : Color_Bg_Blue, 14, 4, (char*)title);
-  if (LCD_ROT)
-    DWIN_Draw_String(false, false, DWIN_FONT_HEAD, Color_White, Color_Bg_Orange, (DWIN_WIDTH / 2) + 20, 4, F("Status"));
+  Draw_Status_Title(GET_TEXT_F(MSG_INFO_STATS_MENU));
 }
 
 void Clear_Menu_Area() {
@@ -795,10 +805,14 @@ void Draw_Control_Menu() {
       DWIN_Frame_TitleCopy(1, 128, 2, 176, 12);                                         // "Control"
     #endif
     #ifdef USE_STRING_TITLES
-      if (LCD_ROT && index_control != 6)
-        DWIN_Draw_String(false, true, font8x16, Color_White, Color_Bg_Black, LBLX, CLINE(CONTROL_CASE_TEMP), GET_TEXT_F(MSG_TEMPERATURE));
-      else
+      
+      if (LCD_ROT) {
+        if (index_control != 6) {
+          DWIN_Draw_String(false, true, font8x16, Color_White, Color_Bg_Black, LBLX, CLINE(CONTROL_CASE_TEMP), GET_TEXT_F(MSG_TEMPERATURE));
+        }
+      } else {
         DWIN_Draw_Label(CLINE(CONTROL_CASE_TEMP), GET_TEXT_F(MSG_TEMPERATURE));
+      }
       
       DWIN_Draw_Label(CLINE(CONTROL_CASE_MOVE), GET_TEXT_F(MSG_MOTION));
       #if ENABLED(EEPROM_SETTINGS)
@@ -1175,30 +1189,40 @@ void Draw_Printing_Screen() {
 }
 
 void Draw_Print_ProgressBar() {
-  DWIN_ICON_Show(ICON, ICON_Bar, LCD_ROT ? 7 : 15, LCD_ROT ? 63 : LCD_ROT ? 63 : 93);
-  DWIN_Draw_Rectangle(1, BarFill_Color, 16 + _card_percent * 240 / 100, 93, 256, 113);
+  if (LCD_ROT) {
+    DWIN_ICON_Show(ICON, ICON_Bar, 6, 63);
+    DWIN_Draw_Rectangle(1, BarFill_Color, 7 + _card_percent * 200 / 100, 63, 247, 83);
+  } else {
+    DWIN_ICON_Show(ICON, ICON_Bar, 15, 93);
+    DWIN_Draw_Rectangle(1, BarFill_Color, 16 + _card_percent * 240 / 100, 93, 256, 113);
+  }
+
+
   DWIN_Draw_IntValue(true, true, 0, font8x16, Percent_Color, Color_Bg_Black, 2, LCD_ROT ? 107 : 117, LCD_ROT ? 100 : 133, _card_percent);
   DWIN_Draw_String(false, false, font8x16, Percent_Color, Color_Bg_Black, LCD_ROT ? 92 : 133, LCD_ROT ? 100 : 133, F("%"));
 }
 
 void Draw_Print_ProgressElapsed() {
   duration_t elapsed = print_job_timer.duration(); // print timer
-  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 160 : 42, LCD_ROT ? 140 : 212, elapsed.value / 3600);
-  DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, LCD_ROT ? 180 : 58, LCD_ROT ? 140 : 212, F(":"));
-  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 200 : 66, LCD_ROT ? 140 : 212, (elapsed.value % 3600) / 60);
+  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 80 : 42, LCD_ROT ? 140 : 212, elapsed.value / 3600);
+  DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, LCD_ROT ? 110 : 58, LCD_ROT ? 140 : 212, F(":"));
+  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 130 : 66, LCD_ROT ? 140 : 212, (elapsed.value % 3600) / 60);
 }
 
 void Draw_Print_ProgressRemain() {
-  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 160 : 176, LCD_ROT ? 170 : 212, _remain_time / 3600);
-  DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, LCD_ROT ? 180 : 192, LCD_ROT ? 140 : 212, F(":"));
-  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, 200, LCD_ROT ? 170 : 212, (_remain_time % 3600) / 60);
+  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 80 : 176, LCD_ROT ? 170 : 212, _remain_time / 3600);
+  DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, LCD_ROT ? 110 : 192, LCD_ROT ? 170 : 212, F(":"));
+  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 130 :200, LCD_ROT ? 170 : 212, (_remain_time % 3600) / 60);
 }
 
 void Goto_PrintProcess() {
+
   checkkey = PrintProcess;
 
   Clear_Main_Window();
   Draw_Printing_Screen();
+
+  Draw_Title(GET_TEXT_F(MSG_PRINTING));
 
   ICON_Tune();
   if (printingIsPaused()) ICON_Continue(); else ICON_Pause();
@@ -1206,11 +1230,20 @@ void Goto_PrintProcess() {
 
   // Copy into filebuf string before entry
   char * const name = card.longest_filename();
-  const int8_t npos = _MAX(0U, DWIN_WIDTH - strlen(name) * MENU_CHR_W) / 2;
-  DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, npos, 60, name);
 
-  DWIN_ICON_Show(ICON, ICON_PrintTime, 17, 193);
-  DWIN_ICON_Show(ICON, ICON_RemainTime, 150, 191);
+  if (LCD_ROT) {
+      const int8_t max_len = 28;
+      char short_name[max_len];
+      strncpy_P(short_name, name, max_len);
+      short_name[max_len - 4] = '.', short_name[max_len - 3] = '.', short_name[max_len - 2] = '.', short_name[max_len - 1]= (char)0;
+      DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, 10, 40, short_name);
+  } else {
+    const int8_t npos = _MAX(0U, (DWIN_WIDTH) - strlen(name) * MENU_CHR_W) / 2;
+    DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, npos, 60, name);
+  }
+
+  DWIN_ICON_Show(ICON, ICON_PrintTime, LCD_ROT ? 15 : 17, LCD_ROT ? 135 : 193);
+  DWIN_ICON_Show(ICON, ICON_RemainTime, LCD_ROT ? 15 : 150, LCD_ROT ? 165 : 191);
 
   Draw_Print_ProgressBar();
   Draw_Print_ProgressElapsed();
@@ -1233,7 +1266,7 @@ void Goto_MainMenu() {
     #endif
   }
 
-  // Not enough space for Crealtiy's logo in landscape mode
+  // Not enough space for Crealtiy's logo in landscape layout
   if (!LCD_ROT) DWIN_ICON_Show(ICON, ICON_LOGO, 71, 52);
 
   ICON_Print();
@@ -2013,15 +2046,6 @@ void HMI_StartFrame(const bool with_update) {
 void Draw_Info_Menu() {
   Clear_Main_Window();
 
-  if (LCD_ROT){
-    DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, ((DWIN_WIDTH - strlen(MACHINE_SIZE) * MENU_CHR_W) / 2) - 40 , 100, F(MACHINE_SIZE));
-    DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, (DWIN_WIDTH - strlen(SHORT_BUILD_VERSION) * MENU_CHR_W) / 2 - 40 , 140, F(SHORT_BUILD_VERSION));
-  } else {
-    DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, (DWIN_WIDTH - strlen(MACHINE_SIZE) * MENU_CHR_W) / 2, 122, F(MACHINE_SIZE));
-    DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, (DWIN_WIDTH - strlen(SHORT_BUILD_VERSION) * MENU_CHR_W) / 2, 195, F(SHORT_BUILD_VERSION));
-  }
- 
-
   if (HMI_IsChinese()) {
     DWIN_Frame_TitleCopy(1, 30, 17, 57, 29); // "Info"
 
@@ -2036,14 +2060,22 @@ void Draw_Info_Menu() {
       DWIN_Frame_TitleCopy(1, 190, 16, 215, 26); // "Info"
     #endif
 
-    if (!LCD_ROT) {
+    if (LCD_ROT){
+      DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, ((DWIN_WIDTH - strlen(MACHINE_SIZE) * MENU_CHR_W) / 2) - 40 , 100, F(MACHINE_SIZE));
+      DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, (DWIN_WIDTH - strlen(SHORT_BUILD_VERSION) * MENU_CHR_W) / 2 - 40 , 140, F(SHORT_BUILD_VERSION));
+      DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, ((DWIN_WIDTH - strlen(CORP_WEBSITE) * MENU_CHR_W) / 2) - 40, 180, F(CORP_WEBSITE));
+
+    } else {
+      DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, (DWIN_WIDTH - strlen(MACHINE_SIZE) * MENU_CHR_W) / 2, 122, F(MACHINE_SIZE));
+      DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, (DWIN_WIDTH - strlen(SHORT_BUILD_VERSION) * MENU_CHR_W) / 2, 195, F(SHORT_BUILD_VERSION));
       DWIN_Frame_AreaCopy(1, 120, 150, 146, 161, 124, 102);
       DWIN_Frame_AreaCopy(1, 146, 151, 254, 161, 82, 175);
       DWIN_Frame_AreaCopy(1, 0, 165, 94, 175, 89, 248);
+      DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, (DWIN_WIDTH - strlen(CORP_WEBSITE) * MENU_CHR_W) / 2, 268, F(CORP_WEBSITE));
+
     }
 
   }
-  DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, (DWIN_WIDTH - strlen(CORP_WEBSITE) * MENU_CHR_W) / 2, 268, F(CORP_WEBSITE));
 
   Draw_Back_First();
   const u_int16_t coefficient = LCD_ROT ? 40 : 73;
@@ -2400,12 +2432,21 @@ void Draw_Move_Menu() {
     #else
       DWIN_Frame_TitleCopy(1, 231, 2, 265, 12);                     // "Move"
     #endif
-    draw_move_en(MBASE(1)); say_x(36, MBASE(1));                    // "Move X"
-    draw_move_en(MBASE(2)); say_y(36, MBASE(2));                    // "Move Y"
-    draw_move_en(MBASE(3)); say_z(36, MBASE(3));                    // "Move Z"
-    #if HAS_HOTEND
-      DWIN_Frame_AreaCopy(1, 123, 192, 176, 202, LBLX, MBASE(4));   // "Extruder"
-    #endif
+    #ifdef USE_STRING_TITLES
+        DWIN_Draw_Label(MBASE(1), (char*) GET_TEXT_F(MSG_MOVE_X));
+        DWIN_Draw_Label(MBASE(2), (char*) GET_TEXT_F(MSG_MOVE_Y));
+        DWIN_Draw_Label(MBASE(3), (char*) GET_TEXT_F(MSG_MOVE_Z));
+        #if HAS_HOTEND
+          DWIN_Draw_Label(MBASE(4), (char*) GET_TEXT_F(MSG_MOVE_E));
+        #endif
+    #else
+        draw_move_en(MBASE(1)); say_x(36, MBASE(1));                    // "Move X"
+        draw_move_en(MBASE(2)); say_y(36, MBASE(2));                    // "Move Y"
+        draw_move_en(MBASE(3)); say_z(36, MBASE(3));                    // "Move Z"
+        #if HAS_HOTEND
+          DWIN_Frame_AreaCopy(1, 123, 192, 176, 202, LBLX, MBASE(4));   // "Extruder"
+        #endif
+        #endif
   }
 
   Draw_Back_First(select_axis.now == 0);

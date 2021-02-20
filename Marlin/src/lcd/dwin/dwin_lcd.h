@@ -44,7 +44,7 @@
  *  0 = 0 degrees (default portrait)
  *  1 = 90 degrees rotation CCW (landscape with knob on the right)
  **/
-#define LCD_ROT 1
+#define LCD_ROT 0
 
 #ifdef LCD_ROT
   #define DWIN_WIDTH  480 
