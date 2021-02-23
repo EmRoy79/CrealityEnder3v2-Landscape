@@ -924,6 +924,16 @@ void Draw_Control_Menu() {
 void Draw_Tune_Menu() {
   Clear_Main_Window();
 
+  #if Tune_CASE_TOTAL >= 4
+    const int16_t scroll = MROWS - index_tune; // Scrolled-up lines
+    #define TUCROL(L) (scroll + (L))
+  #else
+    #define TUCROL(L) (L)
+  #endif
+  #define TULINE(L)  MBASE(TUCROL(L))
+  #define TUVISI(L)  WITHIN(TUCROL(L), 0, MROWS)
+
+  
   if (HMI_IsChinese()) {
     DWIN_Frame_AreaCopy(1, 73, 2, 100, 13, 14, 9);
     DWIN_Frame_AreaCopy(1, 116, 164, 171, 176, LBLX, MBASE(TUNE_CASE_SPEED));
@@ -947,17 +957,19 @@ void Draw_Tune_Menu() {
       DWIN_Frame_AreaCopy(1, 94, 2, 126, 12, 14, 9);
     #endif
     #ifdef USE_STRING_TITLES
-      DWIN_Draw_Label(MBASE(TUNE_CASE_SPEED), GET_TEXT_F(MSG_SPEED));
-      #if HAS_HOTEND
-        DWIN_Draw_Label(MBASE(TUNE_CASE_TEMP), GET_TEXT_F(MSG_UBL_SET_TEMP_HOTEND));
-      #endif
-      #if HAS_HEATED_BED
-        DWIN_Draw_Label(MBASE(TUNE_CASE_BED), GET_TEXT_F(MSG_UBL_SET_TEMP_BED));
-      #endif
-      #if HAS_FAN
-        DWIN_Draw_Label(MBASE(TUNE_CASE_FAN), GET_TEXT_F(MSG_FAN_SPEED));
-      #endif
-      DWIN_Draw_Label(MBASE(TUNE_CASE_ZOFF), GET_TEXT_F(MSG_ZPROBE_ZOFFSET));
+
+    DWIN_Draw_Label(LCD_ROT ? TULINE(TUNE_CASE_SPEED) : MBASE(TUNE_CASE_SPEED), GET_TEXT_F(MSG_SPEED));
+    #if HAS_HOTEND
+      DWIN_Draw_Label(LCD_ROT ? TULINE(TUNE_CASE_TEMP) : MBASE(TUNE_CASE_TEMP), GET_TEXT_F(MSG_UBL_SET_TEMP_HOTEND));
+    #endif
+    #if HAS_HEATED_BED
+      DWIN_Draw_Label(LCD_ROT ? TULINE(TUNE_CASE_BED) : MBASE(TUNE_CASE_BED), GET_TEXT_F(MSG_UBL_SET_TEMP_BED));
+    #endif
+    #if HAS_FAN
+      DWIN_Draw_Label(LCD_ROT ? TULINE(TUNE_CASE_FAN) : MBASE(TUNE_CASE_FAN), GET_TEXT_F(MSG_FAN_SPEED));
+    #endif
+    if (!LCD_ROT)  DWIN_Draw_Label(MBASE(TUNE_CASE_ZOFF), GET_TEXT_F(MSG_ZPROBE_ZOFFSET));
+
     #else
       DWIN_Frame_AreaCopy(1, 1, 179, 92, 190, LBLX, MBASE(TUNE_CASE_SPEED));      // Print speed
       #if HAS_HOTEND
@@ -977,28 +989,38 @@ void Draw_Tune_Menu() {
     #endif
   }
 
-  Draw_Back_First(select_tune.now == 0);
-  if (select_tune.now) Draw_Menu_Cursor(select_tune.now);
+  if (LCD_ROT) {
+    if (TUVISI(0)) Draw_Back_First(select_tune.now == 0); // < Back
+    if (select_tune.now && TUVISI(select_tune.now))
+      Draw_Menu_Cursor(TUCROL(select_temp.now));
+  } else {
+    Draw_Back_First(select_tune.now == 0);
+    if (select_tune.now) Draw_Menu_Cursor(select_tune.now);
+  }
 
-  Draw_Menu_Line(TUNE_CASE_SPEED, ICON_Speed);
-  DWIN_Draw_IntValue(true, true, 0, font8x16, Color_White, Color_Bg_Black, 3, 216, MBASE(TUNE_CASE_SPEED), feedrate_percentage);
+    Draw_Menu_Line(TUNE_CASE_SPEED, ICON_Speed);
+    DWIN_Draw_IntValue(true, true, 0, font8x16, Color_White, Color_Bg_Black, 3, 216, MBASE(TUNE_CASE_SPEED), feedrate_percentage);
 
-  #if HAS_HOTEND
-    Draw_Menu_Line(TUNE_CASE_TEMP, ICON_HotendTemp);
-    DWIN_Draw_IntValue(true, true, 0, font8x16, Color_White, Color_Bg_Black, 3, 216, MBASE(TUNE_CASE_TEMP), thermalManager.temp_hotend[0].target);
-  #endif
-  #if HAS_HEATED_BED
-    Draw_Menu_Line(TUNE_CASE_BED, ICON_BedTemp);
-    DWIN_Draw_IntValue(true, true, 0, font8x16, Color_White, Color_Bg_Black, 3, 216, MBASE(TUNE_CASE_BED), thermalManager.temp_bed.target);
-  #endif
-  #if HAS_FAN
-    Draw_Menu_Line(TUNE_CASE_FAN, ICON_FanSpeed);
-    DWIN_Draw_IntValue(true, true, 0, font8x16, Color_White, Color_Bg_Black, 3, 216, MBASE(TUNE_CASE_FAN), thermalManager.fan_speed[0]);
-  #endif
-  #if HAS_ZOFFSET_ITEM
-    Draw_Menu_Line(TUNE_CASE_ZOFF, ICON_Zoffset);
-    DWIN_Draw_Signed_Float(font8x16, Color_Bg_Black, 2, 2, 202, MBASE(TUNE_CASE_ZOFF), BABY_Z_VAR * 100);
-  #endif
+    #if HAS_HOTEND
+      Draw_Menu_Line(TUNE_CASE_TEMP, ICON_HotendTemp);
+      DWIN_Draw_IntValue(true, true, 0, font8x16, Color_White, Color_Bg_Black, 3, 216, MBASE(TUNE_CASE_TEMP), thermalManager.temp_hotend[0].target);
+    #endif
+    #if HAS_HEATED_BED
+      Draw_Menu_Line(TUNE_CASE_BED, ICON_BedTemp);
+      DWIN_Draw_IntValue(true, true, 0, font8x16, Color_White, Color_Bg_Black, 3, 216, MBASE(TUNE_CASE_BED), thermalManager.temp_bed.target);
+    #endif
+    #if HAS_FAN
+      Draw_Menu_Line(TUNE_CASE_FAN, ICON_FanSpeed);
+      DWIN_Draw_IntValue(true, true, 0, font8x16, Color_White, Color_Bg_Black, 3, 216, MBASE(TUNE_CASE_FAN), thermalManager.fan_speed[0]);
+    #endif
+    #if HAS_ZOFFSET_ITEM
+      if (!LCD_ROT) {
+        Draw_Menu_Line(TUNE_CASE_ZOFF, ICON_Zoffset);
+        DWIN_Draw_Signed_Float(font8x16, Color_Bg_Black, 2, 2, 202, MBASE(TUNE_CASE_ZOFF), BABY_Z_VAR * 100);
+      }
+    #endif
+  
+
 }
 
 void draw_max_en(const uint16_t line) {
@@ -3529,6 +3551,13 @@ void HMI_Tune() {
       if (select_tune.now > MROWS && select_tune.now > index_tune) {
         index_tune = select_tune.now;
         Scroll_Menu(DWIN_SCROLL_UP);
+        if (LCD_ROT) {
+            Draw_Menu_Icon(MROWS, ICON_Speed + select_tune.now - 4);
+            if (index_tune == TUNE_CASE_ZOFF ) {
+              DWIN_Draw_String(false, true, font8x16, Color_White, Color_Bg_Black, LBLX, MBASE(TUNE_CASE_ZOFF + MROWS - index_tune), GET_TEXT_F(MSG_ZPROBE_ZOFFSET)); 
+              DWIN_Draw_Signed_Float(font8x16, Color_Bg_Black, 2, 2, 202, MBASE(TUNE_CASE_ZOFF + MROWS - index_tune), BABY_Z_VAR * 100);
+            }
+        }
       }
       else {
         Move_Highlight(1, select_tune.now + MROWS - index_tune);
@@ -3540,7 +3569,17 @@ void HMI_Tune() {
       if (select_tune.now < index_tune - MROWS) {
         index_tune--;
         Scroll_Menu(DWIN_SCROLL_DOWN);
-        if (index_tune == MROWS) Draw_Back_First();
+        if (LCD_ROT) {
+          if (index_tune == MROWS) {
+            Draw_Back_First();
+          } else {
+            Draw_Menu_Line(0, ICON_Speed + select_tune.now - 4);
+            DWIN_Draw_String(false, true, font8x16, Color_White, Color_Bg_Black, LBLX, MBASE(TUNE_CASE_SPEED + MROWS - index_tune), GET_TEXT_F(MSG_SPEED));
+          }
+        } else {
+          if (index_tune == MROWS) Draw_Back_First();
+        }
+        
       }
       else {
         Move_Highlight(-1, select_tune.now + MROWS - index_tune);
@@ -3551,6 +3590,7 @@ void HMI_Tune() {
     switch (select_tune.now) {
       case 0: { // Back
         select_print.set(0);
+        if (LCD_ROT) index_tune = MROWS;
         Goto_PrintProcess();
       }
       break;

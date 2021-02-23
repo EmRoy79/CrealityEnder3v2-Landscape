@@ -3732,9 +3732,6 @@
 //#define PINS_DEBUGGING
 
 // Enable Marlin dev mode which adds some special commands
-<<<<<<< HEAD
-//#define MARLIN_DEV_MODE
-=======
 //#define MARLIN_DEV_MODE
 
 /**
@@ -3743,4 +3740,3 @@
  * a crash from a remote location. Requires ~400 bytes of SRAM and 5Kb of flash.
  */
 //#define POSTMORTEM_DEBUGGING
->>>>>>> 7a027be25594ae79166b2612c17cf0db3aa29ddf
