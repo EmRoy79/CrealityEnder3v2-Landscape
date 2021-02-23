@@ -374,3 +374,6 @@ inline void DWIN_StartHoming() { HMI_flag.home_flag = true; }
 
 void DWIN_CompletedHoming();
 void DWIN_CompletedLeveling();
+
+void make_name_without_ext(char *, char *, size_t);
+

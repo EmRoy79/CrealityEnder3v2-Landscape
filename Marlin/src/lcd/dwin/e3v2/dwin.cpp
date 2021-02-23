@@ -390,73 +390,106 @@ void ICON_Leveling(bool show) {
 
 void ICON_Tune() {
   if (select_print.now == 0) {
-    DWIN_ICON_Show(ICON, ICON_Setup_1, LCD_ROT ? 2 : 8, LCD_ROT ? 200 : 252);
-    /*DWIN_Draw_Rectangle(0, Color_White, 8, 252, 87, 351);
-    if (HMI_IsChinese())
-      DWIN_Frame_AreaCopy(1, 121, 447, 148, 458, 34, 325);
-    else
-      DWIN_Frame_AreaCopy(1,   0, 466,  34, 476, 31, 325);*/
+    DWIN_ICON_Show(ICON, ICON_Setup_1, LCD_ROT ? 2 : 8, LCD_ROT ? 180: 252);
+    DWIN_Draw_Rectangle(0, Color_White, LCD_ROT ? 2 : 8, LCD_ROT ? 180 : 252, LCD_ROT ? 81 : 87, LCD_ROT ? 271 : 351);
+    if (LCD_ROT) {
+      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 23, 242, GET_TEXT_F(MSG_TUNE));
+    } else {
+      if (HMI_IsChinese())
+        DWIN_Frame_AreaCopy(1, 121, 447, 148, 458, 34, 325);
+      else
+        DWIN_Frame_AreaCopy(1,   0, 466,  34, 476, 31, 325);
+    }
+
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Setup_0, LCD_ROT ? 2 : 8, LCD_ROT ? 200 : 252);
-    /*if (HMI_IsChinese())
-      DWIN_Frame_AreaCopy(1, 121, 405, 148, 420, 34, 325);
-    else
-      DWIN_Frame_AreaCopy(1,   0, 438,  32, 448, 31, 325);*/
+    DWIN_ICON_Show(ICON, ICON_Setup_0, LCD_ROT ? 2 : 8, LCD_ROT ? 180: 252);
+    if (LCD_ROT){
+      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 23, 242, GET_TEXT_F(MSG_TUNE));
+    } else {
+      if (HMI_IsChinese())
+        DWIN_Frame_AreaCopy(1, 121, 405, 148, 420, 34, 325);
+      else
+        DWIN_Frame_AreaCopy(1,   0, 438,  32, 448, 31, 325);
+    }
   }
 }
 
 void ICON_Pause() {
   if (select_print.now == 1) {
-    DWIN_ICON_Show(ICON, ICON_Pause_1, LCD_ROT ? 83 : 96, LCD_ROT ? 200 : 252);
-    /*DWIN_Draw_Rectangle(0, Color_White, 96, 252, 175, 351);
-    if (HMI_IsChinese())
-      DWIN_Frame_AreaCopy(1, 181, 447, 208, 459, 124, 325);
-    else
-      DWIN_Frame_AreaCopy(1, 177, 451, 216, 462, 116, 325);*/
+    DWIN_ICON_Show(ICON, ICON_Pause_1, LCD_ROT ? 83 : 96, LCD_ROT ? 180 : 252);
+    DWIN_Draw_Rectangle(0, Color_White, LCD_ROT ? 83 : 96, LCD_ROT ? 180 : 252, LCD_ROT ? 162 : 175, LCD_ROT ? 271 : 351);
+    if (LCD_ROT) {
+      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 104, 242, F("Pause"));
+    } else {
+      if (HMI_IsChinese())
+        DWIN_Frame_AreaCopy(1, 181, 447, 208, 459, 124, 325);
+      else
+        DWIN_Frame_AreaCopy(1, 177, 451, 216, 462, 116, 325);
+    }
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Pause_0, LCD_ROT ? 83 : 96, LCD_ROT  ? 200 : 252);
-    /*if (HMI_IsChinese())
-      DWIN_Frame_AreaCopy(1, 181, 405, 208, 420, 124, 325);
-    else
-      DWIN_Frame_AreaCopy(1, 177, 423, 215, 433, 116, 325);*/
+    DWIN_ICON_Show(ICON, ICON_Pause_0, LCD_ROT ? 83 : 96, LCD_ROT  ? 180 : 252);
+    if (LCD_ROT) {
+      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 104, 242, F("Pause"));
+    } else {
+      if (HMI_IsChinese())
+        DWIN_Frame_AreaCopy(1, 181, 405, 208, 420, 124, 325);
+      else
+        DWIN_Frame_AreaCopy(1, 177, 423, 215, 433, 116, 325);
+    }
   }
 }
 
 void ICON_Continue() {
   if (select_print.now == 1) {
-    DWIN_ICON_Show(ICON, ICON_Continue_1, LCD_ROT ? 83 : 96, LCD_ROT ? 200 : 252);
-    /*DWIN_Draw_Rectangle(0, Color_White, 96, 252, 175, 351);
-    if (HMI_IsChinese())
-      DWIN_Frame_AreaCopy(1, 1, 447, 28, 460, 124, 325);
-    else
-      DWIN_Frame_AreaCopy(1, 1, 452, 32, 464, 121, 325);*/
+    DWIN_ICON_Show(ICON, ICON_Continue_1, LCD_ROT ? 83 : 96, LCD_ROT ? 180 : 252);
+    DWIN_Draw_Rectangle(0, Color_White, LCD_ROT ? 83 : 96, LCD_ROT ? 180 : 252, LCD_ROT ? 162 : 175, LCD_ROT ? 271 : 351);
+    if (LCD_ROT) {
+      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 104, 242, F("Resume"));
+    } else {
+      if (HMI_IsChinese())
+        DWIN_Frame_AreaCopy(1, 1, 447, 28, 460, 124, 325);
+      else
+        DWIN_Frame_AreaCopy(1, 1, 452, 32, 464, 121, 325);
+    }
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Continue_0, LCD_ROT ? 83 : 96, LCD_ROT ? 200 : 252);
-    /*if (HMI_IsChinese())
-      DWIN_Frame_AreaCopy(1, 1, 405, 28, 420, 124, 325);
-    else
-      DWIN_Frame_AreaCopy(1, 1, 424, 31, 434, 121, 325);*/
+    DWIN_ICON_Show(ICON, ICON_Continue_0, LCD_ROT ? 83 : 96, LCD_ROT ? 180 : 252);
+    if (LCD_ROT) {
+      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 104, 242, F("Resume"));
+    } else {
+      if (HMI_IsChinese())
+        DWIN_Frame_AreaCopy(1, 1, 405, 28, 420, 124, 325);
+      else
+        DWIN_Frame_AreaCopy(1, 1, 424, 31, 434, 121, 325);
+    }
   }
 }
 
 void ICON_Stop() {
   if (select_print.now == 2) {
-    DWIN_ICON_Show(ICON, ICON_Stop_1, LCD_ROT ? 164 : 184, LCD_ROT ? 200 : 252);
-    /*DWIN_Draw_Rectangle(0, Color_White, 184, 252, 263, 351);
-    if (HMI_IsChinese())
-      DWIN_Frame_AreaCopy(1, 151, 447, 178, 459, 210, 325);
-    else
-      DWIN_Frame_AreaCopy(1, 218, 452, 249, 466, 209, 325);*/
+    DWIN_ICON_Show(ICON, ICON_Stop_1, LCD_ROT ? 164 : 184, LCD_ROT ? 180 : 252);
+    DWIN_Draw_Rectangle(0, Color_White, LCD_ROT ? 164 :184, LCD_ROT ? 180 : 252, LCD_ROT ? 243 : 263, LCD_ROT ? 271 : 351);
+    if (LCD_ROT) {
+      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 188, 242, GET_TEXT_F(MSG_BUTTON_STOP));
+    } else {
+      if (HMI_IsChinese())
+        DWIN_Frame_AreaCopy(1, 151, 447, 178, 459, 210, 325);
+      else
+        DWIN_Frame_AreaCopy(1, 218, 452, 249, 466, 209, 325);
+    }
   }
   else {
-    DWIN_ICON_Show(ICON, ICON_Stop_0, LCD_ROT ? 164 : 184, LCD_ROT ? 200 : 252);
-    /*if (HMI_IsChinese())
+    DWIN_ICON_Show(ICON, ICON_Stop_0, LCD_ROT ? 164 : 184, LCD_ROT ? 180 : 252);
+    if (LCD_ROT) {
+      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 188, 242, GET_TEXT_F(MSG_BUTTON_STOP));
+    } else {
+    if (HMI_IsChinese())
       DWIN_Frame_AreaCopy(1, 151, 405, 178, 420, 210, 325);
     else
-      DWIN_Frame_AreaCopy(1, 218, 423, 247, 436, 209, 325);*/
+      DWIN_Frame_AreaCopy(1, 218, 423, 247, 436, 209, 325);
+    }
   }
 }
 
@@ -1259,7 +1292,10 @@ void Draw_Printing_Screen() {
     DWIN_Frame_AreaCopy(1, 65, 72, 128, 86, 176, 188);  // Stop
   }
   else {
-    if (!LCD_ROT) {
+    if (LCD_ROT) {
+      DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, 40, 120, F("Printing  Time:"));
+      DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, 40, 150, F("Remaining Time:"));
+    } else {
       DWIN_Frame_AreaCopy(1, 40,  2,  92, 14,  14,   9);  // Tune
       DWIN_Frame_AreaCopy(1,  0, 44,  96, 58,  41, 188);  // Pause
       DWIN_Frame_AreaCopy(1, 98, 44, 152, 58, 176, 188);  // Stop
@@ -1277,21 +1313,21 @@ void Draw_Print_ProgressBar() {
   }
 
 
-  DWIN_Draw_IntValue(true, true, 0, font8x16, Percent_Color, Color_Bg_Black, 2, LCD_ROT ? 107 : 117, LCD_ROT ? 100 : 133, _card_percent);
-  DWIN_Draw_String(false, false, font8x16, Percent_Color, Color_Bg_Black, LCD_ROT ? 92 : 133, LCD_ROT ? 100 : 133, F("%"));
+  DWIN_Draw_IntValue(true, true, 0, font8x16, Percent_Color, Color_Bg_Black, 2, LCD_ROT ? 107 : 117, LCD_ROT ? 95 : 133, _card_percent);
+  DWIN_Draw_String(false, false, font8x16, Percent_Color, Color_Bg_Black, LCD_ROT ? 92 : 133, LCD_ROT ? 95 : 133, F("%"));
 }
 
 void Draw_Print_ProgressElapsed() {
   duration_t elapsed = print_job_timer.duration(); // print timer
-  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 80 : 42, LCD_ROT ? 140 : 212, elapsed.value / 3600);
-  DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, LCD_ROT ? 110 : 58, LCD_ROT ? 140 : 212, F(":"));
-  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 130 : 66, LCD_ROT ? 140 : 212, (elapsed.value % 3600) / 60);
+  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 170 : 42, LCD_ROT ? 120 : 212, elapsed.value / 3600);
+  DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, LCD_ROT ? 200 : 58, LCD_ROT ? 120 : 212, F(":"));
+  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 220 : 66, LCD_ROT ? 120 : 212, (elapsed.value % 3600) / 60);
 }
 
 void Draw_Print_ProgressRemain() {
-  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 80 : 176, LCD_ROT ? 170 : 212, _remain_time / 3600);
-  DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, LCD_ROT ? 110 : 192, LCD_ROT ? 170 : 212, F(":"));
-  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 130 :200, LCD_ROT ? 170 : 212, (_remain_time % 3600) / 60);
+  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 170 : 176, LCD_ROT ? 150 : 212, _remain_time / 3600);
+  DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, LCD_ROT ? 200 : 192, LCD_ROT ? 150 : 212, F(":"));
+  DWIN_Draw_IntValue(true, true, 1, font8x16, Color_White, Color_Bg_Black, 2, LCD_ROT ? 220 : 200, LCD_ROT ? 150 : 212, (_remain_time % 3600) / 60);
 }
 
 void Goto_PrintProcess() {
@@ -1313,16 +1349,15 @@ void Goto_PrintProcess() {
   if (LCD_ROT) {
       const int8_t max_len = 28;
       char short_name[max_len];
-      strncpy_P(short_name, name, max_len);
-      short_name[max_len - 4] = '.', short_name[max_len - 3] = '.', short_name[max_len - 2] = '.', short_name[max_len - 1]= (char)0;
-      DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, 10, 40, short_name);
+      make_name_without_ext(short_name, name, max_len);
+      DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, 10, 40, (strlen(name) - 4)  > max_len ? short_name : name);
   } else {
     const int8_t npos = _MAX(0U, (DWIN_WIDTH) - strlen(name) * MENU_CHR_W) / 2;
     DWIN_Draw_String(false, false, font8x16, Color_White, Color_Bg_Black, npos, 60, name);
   }
 
-  DWIN_ICON_Show(ICON, ICON_PrintTime, LCD_ROT ? 15 : 17, LCD_ROT ? 135 : 193);
-  DWIN_ICON_Show(ICON, ICON_RemainTime, LCD_ROT ? 15 : 150, LCD_ROT ? 165 : 191);
+  DWIN_ICON_Show(ICON, ICON_PrintTime, LCD_ROT ? 10 : 17, LCD_ROT ? 115 : 193);
+  DWIN_ICON_Show(ICON, ICON_RemainTime, LCD_ROT ? 10 : 150, LCD_ROT ? 145 : 191);
 
   Draw_Print_ProgressBar();
   Draw_Print_ProgressElapsed();
