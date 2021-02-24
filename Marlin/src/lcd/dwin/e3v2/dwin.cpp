@@ -600,11 +600,12 @@ void Draw_Back_Label() {
 void Draw_Back_First(const bool is_sel=true) {
   #ifdef USE_STRING_TITLES
     Draw_Menu_Line(0, ICON_Back, (char *) GET_TEXT_F(MSG_BACK));
-  #else
-    DWIN_Frame_AreaCopy(1, 69, 61, 102, 71, LBLX, line); // "Move"
   #endif
   
-  if (!LCD_ROT) Draw_Back_Label();
+  if (!LCD_ROT) {
+    Draw_Menu_Line(0, ICON_Back);
+    Draw_Back_Label();
+  }
   if (is_sel) Draw_Menu_Cursor(0);
 }
 
@@ -1846,7 +1847,7 @@ void update_variable() {
     static int16_t _flow = planner.flow_percentage[0];
     if (_flow != planner.flow_percentage[0]) {
       _flow = planner.flow_percentage[0];
-      DWIN_Draw_IntValue(true, true, 0, DWIN_FONT_STAT, Color_White, Color_Bg_Black, 3, 116 + 2 * STAT_CHR_W, 417, _flow); //ATTT
+      if (!LCD_ROT) DWIN_Draw_IntValue(true, true, 0, DWIN_FONT_STAT, Color_White, Color_Bg_Black, 3, 116 + 2 * STAT_CHR_W, 417, _flow);
     }
   #endif
 
@@ -2094,7 +2095,7 @@ void Draw_Status_Area(const bool with_update) {
 
     DWIN_ICON_Show(ICON, ICON_StepE, LCD_ROT ? 265 : 112, LCD_ROT ? 190 : 417);
     DWIN_Draw_IntValue(true, true, 0, DWIN_FONT_STAT, Color_White, Color_Bg_Black, 3, LCD_ROT ? 300 : 116 + 2 * STAT_CHR_W, LCD_ROT ? 190 : 417, planner.flow_percentage[0]);
-    DWIN_Draw_String(false, false, DWIN_FONT_STAT, Color_White, Color_Bg_Black, 116 + 5 * STAT_CHR_W + 2, 417, F("%")); //ATTT
+    if (!LCD_ROT) DWIN_Draw_String(false, false, DWIN_FONT_STAT, Color_White, Color_Bg_Black, 116 + 5 * STAT_CHR_W + 2, 417, F("%")); 
   #endif
 
   #if HAS_HEATED_BED

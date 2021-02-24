@@ -39,21 +39,24 @@
 #define DWIN_SCROLL_UP   2
 #define DWIN_SCROLL_DOWN 3
 
-/**
- *  LCD Rotation *
- *  0 = 0 degrees (default portrait)
- *  1 = 90 degrees rotation CCW (landscape with knob on the right)
- **/
+
+// LCD Rotation
+// 0 = portrait (default)
+// 1 = landscape with knob on the right side
 #define LCD_ROT 1
 
-#ifdef LCD_ROT
+#if (LCD_ROT)
   #define DWIN_WIDTH  480 
   #define DWIN_HEIGHT 272 
-#else 
+#else
   #define DWIN_WIDTH  272
   #define DWIN_HEIGHT 480
 #endif
 
+// flip screen upside down (default = 0)
+// set both LCD_ROT and LCD_FLIP to 1 to
+// have landscape layout with knob on the left side
+#define LCD_FLIP 0
 
 /*-------------------------------------- System variable function --------------------------------------*/
 
