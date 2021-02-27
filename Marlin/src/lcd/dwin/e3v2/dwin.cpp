@@ -334,7 +334,7 @@ void ICON_StartInfo(bool show) {
   if (show) {
     if(LCD_ROT){
       DWIN_ICON_Show(ICON, ICON_Info_1, 130, 160);
-      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 152, 230, GET_TEXT_F(MSG_INFO_SCREEN));
+      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 142, 230, GET_TEXT_F(MSG_INFO_SCREEN));
       DWIN_Draw_Rectangle(0, Color_White, 130, 160, 239, 259);
     } else {
       DWIN_ICON_Show(ICON, ICON_Info_1, 145, 246);
@@ -348,7 +348,7 @@ void ICON_StartInfo(bool show) {
   else {
     if(LCD_ROT) {
       DWIN_ICON_Show(ICON, ICON_Info_0, 130, 160);
-      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 152, 230, GET_TEXT_F(MSG_INFO_SCREEN));
+      DWIN_Draw_String(false, false, DWIN_FONT_MENU, Color_White, Color_Bg_Blue, 142, 230, GET_TEXT_F(MSG_INFO_SCREEN));
     } else {
       DWIN_ICON_Show(ICON, ICON_Info_0, LCD_ROT ? 130 : 145, LCD_ROT ? 160: 246);
       if (HMI_IsChinese())
