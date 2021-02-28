@@ -1800,8 +1800,6 @@ void update_variable() {
     static uint8_t _fanspeed = 0;
     const bool _new_fanspeed = _fanspeed != thermalManager.fan_speed[0];
     if (_new_fanspeed) _fanspeed = thermalManager.fan_speed[0];
-
-    uint16_t _partfan_speed = thermalManager.fan_speed[active_extruder] / 255.0 * 100;
   #endif
 
   if (checkkey == Tune) {
@@ -1835,7 +1833,7 @@ void update_variable() {
     #endif
   }
 
-  // Bottom temperature update
+  // Status area temperature update
 
   #if HAS_HOTEND
     if (_new_hotend_temp)
@@ -1873,9 +1871,7 @@ void update_variable() {
     }
     if (LCD_ROT) {
         // second fan (part cooling fan)
-        _partfan_speed = thermalManager.fan_speed[active_extruder] / 255.0 * 100;
-        if (_partfan_speed > 0 && _partfan_speed < 100) _partfan_speed++;
-        DWIN_Draw_IntValue(true, true, 0, DWIN_FONT_STAT, Color_White, Color_Bg_Black, 3, 292, 160, _partfan_speed);
+        DWIN_Draw_IntValue(true, true, 0, DWIN_FONT_STAT, Color_White, Color_Bg_Black, 3, 292, 160, thermalManager.fan_speed[active_extruder]);
       }   
   #endif
 
