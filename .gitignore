@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #
 # Marlin 3D Printer Firmware
 # Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
@@ -32,6 +33,12 @@ applet/
 #
 # Misc
 #
+=======
+applet/
+.vscode/
+.pio/
+*.o
+>>>>>>> 9495731c575b4cd9e89f446ce46cad7a85e946fd
 *~
 *.orig
 *.rej

@@ -300,7 +300,11 @@ bool SdBaseFile::getDosName(char * const name) {
   dirName(*p, name);
   return true;
 }
+<<<<<<< HEAD:Marlin/src/sd/SdBaseFile.cpp
 
+=======
+//------------------------------------------------------------------------------
+>>>>>>> 9495731c575b4cd9e89f446ce46cad7a85e946fd:Marlin/SdBaseFile.cpp
 void SdBaseFile::getpos(filepos_t* pos) {
   pos->position = curPosition_;
   pos->cluster = curCluster_;
@@ -1480,7 +1484,11 @@ bool SdBaseFile::seekSet(const uint32_t pos) {
   curPosition_ = pos;
   return true;
 }
+<<<<<<< HEAD:Marlin/src/sd/SdBaseFile.cpp
 
+=======
+//------------------------------------------------------------------------------
+>>>>>>> 9495731c575b4cd9e89f446ce46cad7a85e946fd:Marlin/SdBaseFile.cpp
 void SdBaseFile::setpos(filepos_t* pos) {
   curPosition_ = pos->position;
   curCluster_ = pos->cluster;
