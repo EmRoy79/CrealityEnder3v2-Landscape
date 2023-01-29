@@ -68,23 +68,7 @@
 
 // @section info
 
-<<<<<<< HEAD
 // Author info of this build printed to the host during boot and M115
-=======
-#ifdef USE_AUTOMATIC_VERSIONING
-  #include "_Version.h"
-#else
-  #include "Default_Version.h"
-#endif
-
-// User-specified version info of this build to display in [Pronterface, etc] terminal window during
-// startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
-// build by the user have been successfully uploaded into firmware.
-#define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
-//#define STRING_SPLASH_LINE2 STRING_DISTRIBUTION_DATE // will be shown during bootup in line 2
-
-#define STRING_VERSION_CONFIG_H __DATE__ " " __TIME__ // build date and time
->>>>>>> 9495731c575b4cd9e89f446ce46cad7a85e946fd
 #define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
